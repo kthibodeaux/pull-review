@@ -8,5 +8,6 @@ module PullReview
 end
 
 require 'pull_review/attributable'
+require 'pull_review/bufferable'
 require 'pull_review/get_index'
 require 'pull_review/pull_request'
