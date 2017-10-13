@@ -7,4 +7,4 @@ if !exists('g:PULLREVIEW_INSTALL_PATH')
   let g:PULLREVIEW_INSTALL_PATH = fnamemodify(expand("<sfile>"), ":p:h")
 end
 
-command! PullReviewSayHello call pullreview#say_hello()
+command! PullReviewList call pullreview#get_index()
