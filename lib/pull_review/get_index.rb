@@ -1,5 +1,7 @@
 module PullReview
   class GetIndex
+    BUFFER_TYPE = 'pullreview-index'
+
     def self.call
       new.call
     end
@@ -10,12 +12,19 @@ module PullReview
         buffer_print_line("#{ pr.user_login } #{ pr.labels }")
         buffer_print_line
       end
+
+      disable_modification
     end
 
     private
 
     def buffer
-      @buffer ||= Vim::Buffer.current
+      @buffer ||= begin
+                    Vim.command 'enew'
+                    Vim.command 'setl buftype=nofile'
+                    Vim.command "set filetype=#{ BUFFER_TYPE }"
+                    Vim::Buffer.current
+                  end
     end
 
     def buffer_print_line(string = '')
@@ -28,6 +37,10 @@ module PullReview
 
     def last_line
       buffer.length - 1
+    end
+
+    def disable_modification
+      Vim.command 'set noma'
     end
   end
 end

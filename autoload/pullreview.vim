@@ -8,9 +8,6 @@ if has('ruby')
   ruby require 'pull_review'
 
   function pullreview#get_index()
-    enew
-    set ft=pullreview-index
     ruby PullReview::GetIndex.call
-    set noma
   endfunction
 endif
