@@ -10,4 +10,8 @@ if has('ruby')
   function pullreview#get_index()
     ruby PullReview::GetIndex.call
   endfunction
+
+  function pullreview#get_pull_request()
+    ruby PullReview::GetPullRequest.call
+  endfunction
 endif
