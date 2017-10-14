@@ -6,7 +6,7 @@ module PullReview
       @buffer ||= begin
                     Vim.command 'enew'
                     Vim.command 'setl buftype=nofile'
-                    Vim.command "set filetype=#{ self.class::BUFFER_TYPE }"
+                    set_buffer_filetype
                     Vim.command 'set noma'
                     Vim::Buffer.current
                   end
@@ -20,12 +20,13 @@ module PullReview
       Vim.command 'set noma'
     end
 
-    def buffer_print_line(string = '')
-      buffer.append(last_line, string)
+    def set_buffer_filetype
+      return unless self.class.const_defined?('BUFFER_TYPE')
+      Vim.command "set filetype=#{ self.class::BUFFER_TYPE }"
     end
 
-    def pull_requests
-      PullRequest.all
+    def buffer_print_line(string = '')
+      buffer.append(last_line, string)
     end
 
     def last_line

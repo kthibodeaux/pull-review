@@ -1,7 +1,6 @@
 module PullReview
   class GetIndex
     include Bufferable
-    BUFFER_TYPE = 'pullreview-index'
 
     def self.call
       new.call
@@ -15,9 +14,15 @@ module PullReview
           buffer_print_line
         end
       end
+
+      create_maps
     end
 
     private
+
+    def create_maps
+      Vim.command 'nnoremap <buffer> <CR> :call pullreview#get_pull_request()<CR>'
+    end
 
     def pull_requests
       PullRequest.all

@@ -1,7 +1,7 @@
 module PullReview
   class GetPullRequest
     include Bufferable
-    BUFFER_TYPE = 'pullreview-pull-request'
+    BUFFER_TYPE = 'diff'
 
     def self.call
       new.call
