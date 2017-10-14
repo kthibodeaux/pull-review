@@ -16,10 +16,6 @@ module PullReview
     private
     attr_reader :line
 
-    def line_maps
-      @line_maps = Diff.parse(diff)
-    end
-
     def write_diff_content_to_buffer
       modify do
         diff.split("\n").each do |line|
@@ -29,15 +25,15 @@ module PullReview
     end
 
     def mark_lines_that_have_comments
-      CommentPositions.mark_lines(number, line_maps, Vim::Buffer.current.number)
+      CommentPositions.mark_lines(diff_map, Vim::Buffer.current.number)
+    end
+
+    def diff_map
+      DiffMap.loaded
     end
 
     def diff
-      @diff ||= Diff.find(number)
-    end
-
-    def number
-      line.split(':').first
+      Diff.loaded
     end
   end
 end

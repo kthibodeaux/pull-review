@@ -1,8 +1,8 @@
 module PullReview
   class CommentPositions
-    def self.mark_lines(number, line_maps, buffer_number)
+    def self.mark_lines(diff_map, buffer_number)
       CommentChain.loaded.each do |comment|
-        line_number = line_maps
+        line_number = diff_map
           .select { |k, v| v.fetch(:file) == comment.fetch('path') }
           .detect { |k, v| v.fetch(:relative_line) == comment.fetch('position') }
           .first
