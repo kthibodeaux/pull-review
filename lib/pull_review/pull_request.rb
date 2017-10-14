@@ -3,7 +3,7 @@ module PullReview
     include Attributable
 
     def self.all
-      @all ||= JSON.parse(`curl --silent -H "Authorization: token #{ PullReview::TOKEN }" -H "Content-Type: application/json" "https://api.github.com/repos/#{ PullReview::REPO }/issues"`)
+      JSON.parse(`curl --silent -H "Authorization: token #{ PullReview::TOKEN }" -H "Content-Type: application/json" "https://api.github.com/repos/#{ PullReview::REPO }/issues"`)
         .select { |e| e.has_key?('pull_request') }
         .map { |e| PullRequest.new(e) }
     end
@@ -23,6 +23,10 @@ module PullReview
         .fetch('labels')
         .map { |e| "[ #{ e.fetch('name') } ]" }
         .join(' ')
+    end
+
+    def to_s
+      json_data.to_s
     end
 
     private
