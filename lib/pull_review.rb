@@ -8,6 +8,7 @@ module PullReview
 end
 
 require 'pull_review/bufferable'
+require 'pull_review/comment_chain'
 require 'pull_review/comment_positions'
 require 'pull_review/diff'
 require 'pull_review/get_index'

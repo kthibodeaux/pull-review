@@ -15,6 +15,7 @@ if has('ruby')
 
   function pullreview#get_pull_request()
     let l:line = getline(".")
+    ruby PullReview::CommentChain.load(Vim.evaluate("l:line"))
     ruby PullReview::GetPullRequest.new(Vim.evaluate("l:line")).call
   endfunction
 endif
