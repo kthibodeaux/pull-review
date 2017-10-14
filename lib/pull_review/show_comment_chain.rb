@@ -9,6 +9,7 @@ module PullReview
     def call
       Vim.command 'vsplit'
       Vim.command 'enew'
+      Vim.command 'set wrap'
       write_comments_to_buffer
       create_maps
     end
