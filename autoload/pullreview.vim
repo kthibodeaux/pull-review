@@ -9,6 +9,11 @@ if has('ruby')
   ruby $: << File.expand_path(File.join(Vim.evaluate('g:PULLREVIEW_INSTALL_PATH'), '..', 'lib'))
   ruby require 'pull_review'
 
+  function pullreview#show_comment_chain()
+    let l:line_number = line(".")
+    ruby PullReview::ShowCommentChain.new(Vim.evaluate("l:line_number")).call
+  endfunction
+
   function pullreview#show_pull_request()
     let l:line = getline(".")
     ruby PullReview::CommentChain.load(Vim.evaluate("l:line"))
