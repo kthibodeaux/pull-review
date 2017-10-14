@@ -17,6 +17,13 @@ module PullReview
           end
 
           if new_file
+            next if line == '--- /dev/null'
+            next if line == '+++ /dev/null'
+
+            if line.start_with? '--- '
+              filename = line.partition('/').last
+            end
+
             if line.start_with? '+++ '
               filename = line.partition('/').last
             end
