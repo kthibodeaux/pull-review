@@ -1,5 +1,5 @@
 module PullReview
-  class GetPullRequest
+  class ShowPullRequest
     include Bufferable
     BUFFER_TYPE = 'diff'
 
