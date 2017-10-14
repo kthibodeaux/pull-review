@@ -26,7 +26,7 @@ module PullReview
     end
 
     def mark_lines_that_have_comments
-      CommentPositions.mark_lines(diff_map, Vim::Buffer.current.number)
+      CommentPositions.mark_lines(diff_map, buffer.number)
     end
 
     def diff_map
