@@ -8,43 +8,32 @@ module PullReview
     end
 
     def call
-      if line_contains_pr_number?
-        Vim.command 'tab new'
-        maps = ParseDiff.new(diff).mappings
-
-        modify do
-          diff.split("\n").each do |line|
-            buffer_print_line line
-          end
-        end
-
-        comment_positions.each do |comment_position|
-          line_number = maps
-            .select { |k, v| v.fetch(:file) == comment_position.fetch('path') }
-            .detect { |k, v| v.fetch(:relative_line) == comment_position.fetch('position') }
-            .first
-          Vim.command "sign place #{ line_number } line=#{ line_number } name=pullreviewcomment buffer=#{ Vim::Buffer.current.number }"
-        end
-      else
-        Vim.command "echo 'No pull request found in #{ line }'"
-      end
+      Vim.command 'tab new'
+      write_diff_content_to_buffer
+      mark_lines_that_have_comments
     end
 
     private
     attr_reader :line
 
-    def comment_positions
-      @comment_positions ||= JSON
-        .parse(`curl --silent -H "Authorization: token #{ PullReview::TOKEN }" -H "Content-Type: application/json" "https://api.github.com/repos/#{ PullReview::REPO }/pulls/#{ number }/comments"`)
-        .reject { |e| e.fetch('position').nil? }
+    def line_maps
+      @line_maps = Diff.parse(diff)
+    end
+
+    def write_diff_content_to_buffer
+      modify do
+        diff.split("\n").each do |line|
+          buffer_print_line line
+        end
+      end
+    end
+
+    def mark_lines_that_have_comments
+      CommentPositions.mark_lines(number, line_maps, Vim::Buffer.current.number)
     end
 
     def diff
-      @diff ||= `curl --silent -H "Authorization: token #{ PullReview::TOKEN }" -H "Accept: application/vnd.github.v3.diff" "https://api.github.com/repos/#{ PullReview::REPO }/pulls/#{ pull_request_number }.diff"`
-    end
-
-    def line_contains_pr_number?
-      line.include?(':')
+      @diff ||= Diff.find(number)
     end
 
     def number

@@ -9,8 +9,8 @@ module PullReview
     def call
       modify do
         pull_requests.each do |pr|
-          buffer_print_line("#{ pr.number }: #{ pr.title }")
-          buffer_print_line("#{ pr.user_login } #{ pr.labels }")
+          buffer_print_line("#{ pr.fetch('number') }: #{ pr.fetch('title') }")
+          buffer_print_line("#{ pr.fetch('user').fetch('login') } #{ format_labels(pr.fetch('labels')) }")
           buffer_print_line
         end
       end
@@ -25,7 +25,15 @@ module PullReview
     end
 
     def pull_requests
-      PullRequest.all
+      JSON
+        .parse(`curl --silent -H "Authorization: token #{ PullReview::TOKEN }" -H "Content-Type: application/json" "https://api.github.com/repos/#{ PullReview::REPO }/issues"`)
+        .select { |e| e.has_key?('pull_request') }
+    end
+
+    def format_labels(labels)
+      labels
+        .map { |e| "[ #{ e.fetch('name') } ]" }
+        .join(' ')
     end
   end
 end

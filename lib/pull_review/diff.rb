@@ -1,23 +1,16 @@
 module PullReview
-  class ParseDiff
-    def initialize(diff)
-      @diff = diff
+  class Diff
+    def self.find(number)
+      `curl --silent -H "Authorization: token #{ PullReview::TOKEN }" -H "Accept: application/vnd.github.v3.diff" "https://api.github.com/repos/#{ PullReview::REPO }/pulls/#{ number }.diff"`
     end
 
-    def mappings
-      @mappings ||= parse_diff
-    end
-
-    private
-    attr_reader :diff
-
-    def parse_diff
+    def self.parse(diff_contents)
       relative_line = 0
       filename = nil
       new_file = false
 
       {}.tap do |maps|
-        diff.split("\n").each.with_index(1) do |line, index|
+        diff_contents.split("\n").each.with_index(1) do |line, index|
           if line.start_with? 'diff --git '
             new_file = true
             next
