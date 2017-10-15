@@ -17,3 +17,6 @@ This will list all open pull requests for your project.  With your cursor over t
 In the diff view lines that have comments will have a symbol in the line gutter.  To view the comment thread for that line, put your cursor on the line and press `<CR>`.
 
 Comments can be added in the diff view by pressing `c`.  A split will open and be in insert mode.  Type your comment there and when you are ready to post the comment leave insert mode and press `<CR>`.
+
+[AGhost-7/critiq.vim]: https://github.com/AGhost-7/critiq.vim
+[codegram/vim-codereview]: https://github.com/codegram/vim-codereview
