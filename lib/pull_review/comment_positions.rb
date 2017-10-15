@@ -1,14 +1,19 @@
 module PullReview
   class CommentPositions
-    def self.mark_lines(diff_map, buffer_number)
-      CommentChain.loaded.each do |comment|
-        line_number = diff_map
+    def self.mark_lines(buffer_number)
+      self.lines_with_comments.each do |line_number|
+        Vim.command "sign place #{ line_number } line=#{ line_number } name=pullreviewcomment buffer=#{ buffer_number }"
+      end
+    end
+
+    def self.lines_with_comments
+      CommentChain.loaded.map do |comment|
+        line_number = DiffMap
+          .loaded
           .select { |k, v| v.fetch(:file) == comment.fetch('path') }
           .detect { |k, v| v.fetch(:relative_line) == comment.fetch('position') }
           .first
-
-        Vim.command "sign place #{ line_number } line=#{ line_number } name=pullreviewcomment buffer=#{ buffer_number }"
-      end
+      end.uniq.sort
     end
   end
 end
