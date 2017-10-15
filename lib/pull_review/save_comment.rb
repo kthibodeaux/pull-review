@@ -8,7 +8,7 @@ module PullReview
       post_comment
       add_comment_to_loaded
       Vim.command 'bd!'
-      CommentPositions.mark_lines(DiffMap.loaded, Vim::Buffer.current.number)
+      CommentPositions.mark_lines(Vim::Buffer.current.number)
     end
 
     private

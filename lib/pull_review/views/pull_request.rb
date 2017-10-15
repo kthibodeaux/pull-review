@@ -26,11 +26,7 @@ module PullReview
     end
 
     def mark_lines_that_have_comments
-      CommentPositions.mark_lines(diff_map, buffer.number)
-    end
-
-    def diff_map
-      DiffMap.loaded
+      CommentPositions.mark_lines(buffer.number)
     end
 
     def diff
@@ -40,6 +36,8 @@ module PullReview
     def create_maps
       Vim.command 'nnoremap <buffer> <silent> <CR> :call pullreview#show_comment_chain()<CR>'
       Vim.command 'nnoremap <buffer> <silent> c :call pullreview#new_comment()<CR>'
+      Vim.command 'nnoremap <buffer> <silent> <C-p> :call pullreview#go_to_previous_commented_line()<CR>'
+      Vim.command 'nnoremap <buffer> <silent> <C-n> :call pullreview#go_to_next_commented_line()<CR>'
       Vim.command 'nnoremap <buffer> <silent> q :bd<CR>'
     end
   end
