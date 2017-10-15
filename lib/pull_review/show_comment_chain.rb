@@ -7,15 +7,23 @@ module PullReview
     end
 
     def call
-      Vim.command 'vsplit'
-      Vim.command 'enew'
-      Vim.command 'set wrap'
-      write_comments_to_buffer
-      create_maps
+      if has_comments?
+        Vim.command 'vsplit'
+        Vim.command 'enew'
+        Vim.command 'set wrap'
+        write_comments_to_buffer
+        create_maps
+      else
+        Vim.command "echo 'No comment chain present for this line'"
+      end
     end
 
     private
     attr_reader :diff_line_number
+
+    def has_comments?
+      !diff_map_location.nil? && comments.any?
+    end
 
     def write_comments_to_buffer
       modify do
