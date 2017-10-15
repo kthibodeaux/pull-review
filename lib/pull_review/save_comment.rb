@@ -15,7 +15,7 @@ module PullReview
     attr_reader :args_dict
 
     def post_comment
-      @post_comment ||= `curl --silent -H "Authorization: token #{ PullReview::TOKEN }" -H "Content-Type: application/json" -d '#{ comment.to_json }' "https://api.github.com/repos/#{ PullReview::REPO }/pulls/#{ number }/comments"`
+      @post_comment ||= Request::PostComment.new(number: number, comment: comment).response
     end
 
     def add_comment_to_loaded
