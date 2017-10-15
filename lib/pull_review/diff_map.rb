@@ -1,29 +1,33 @@
 module PullReview
-  class ParseDiff
-    def initialize(diff)
-      @diff = diff
+  class DiffMap
+    def self.load_from_loaded_diff
+      @loaded = self.parse(Diff.loaded)
     end
 
-    def mappings
-      @mappings ||= parse_diff
+    def self.loaded
+      @loaded
     end
 
-    private
-    attr_reader :diff
-
-    def parse_diff
+    def self.parse(diff_contents)
       relative_line = 0
       filename = nil
       new_file = false
 
       {}.tap do |maps|
-        diff.split("\n").each.with_index(1) do |line, index|
+        diff_contents.split("\n").each.with_index(1) do |line, index|
           if line.start_with? 'diff --git '
             new_file = true
             next
           end
 
           if new_file
+            next if line == '--- /dev/null'
+            next if line == '+++ /dev/null'
+
+            if line.start_with? '--- '
+              filename = line.partition('/').last
+            end
+
             if line.start_with? '+++ '
               filename = line.partition('/').last
             end
