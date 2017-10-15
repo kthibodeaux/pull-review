@@ -11,7 +11,7 @@ if has('ruby')
 
   function pullreview#show_comment_chain()
     let l:line_number = line(".")
-    ruby PullReview::ShowCommentChain.new(Vim.evaluate("l:line_number")).call
+    ruby PullReview::View::CommentChain.new(Vim.evaluate("l:line_number")).call
   endfunction
 
   function pullreview#show_pull_request()
@@ -19,10 +19,10 @@ if has('ruby')
     ruby PullReview::CommentChain.load(Vim.evaluate("l:line"))
     ruby PullReview::Diff.load(Vim.evaluate("l:line"))
     ruby PullReview::DiffMap.load_from_loaded_diff()
-    ruby PullReview::ShowPullRequest.new(Vim.evaluate("l:line")).call()
+    ruby PullReview::View::PullRequest.new(Vim.evaluate("l:line")).call()
   endfunction
 
   function pullreview#show_pull_request_list()
-    ruby PullReview::ShowPullRequestList.call()
+    ruby PullReview::View::PullRequestList.call()
   endfunction
 endif

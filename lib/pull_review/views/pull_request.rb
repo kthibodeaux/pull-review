@@ -1,5 +1,5 @@
 module PullReview
-  class ShowPullRequest
+  class View::PullRequest
     include Bufferable
     BUFFER_TYPE = 'diff'
 
