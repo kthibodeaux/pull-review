@@ -8,6 +8,7 @@ module PullReview
       return if diff_map_location.nil?
       buffer
       create_maps
+      Vim.command 'startinsert'
     end
 
     private
