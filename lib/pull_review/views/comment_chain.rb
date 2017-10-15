@@ -11,6 +11,7 @@ module PullReview
         Vim.command 'vsplit'
         Vim.command 'enew'
         Vim.command 'set wrap'
+        Vim.command 'set linebreak'
         write_comments_to_buffer
         create_maps
       else
