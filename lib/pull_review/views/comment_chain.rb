@@ -1,5 +1,5 @@
 module PullReview
-  class ShowCommentChain
+  class View::CommentChain
     include Bufferable
 
     def initialize(diff_line_number)

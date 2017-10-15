@@ -1,5 +1,5 @@
 module PullReview
-  class ShowPullRequestList
+  class View::PullRequestList
     include Bufferable
 
     def self.call

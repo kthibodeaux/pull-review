@@ -1,5 +1,5 @@
 module PullReview
-  class ShowPullRequest
+  class View::PullRequest
     include Bufferable
     BUFFER_TYPE = 'diff'
 
@@ -39,6 +39,7 @@ module PullReview
 
     def create_maps
       Vim.command 'nnoremap <buffer> <silent> <CR> :call pullreview#show_comment_chain()<CR>'
+      Vim.command 'nnoremap <buffer> <silent> c :call pullreview#new_comment()<CR>'
       Vim.command 'nnoremap <buffer> <silent> q :bd<CR>'
     end
   end
