@@ -7,6 +7,11 @@ This plugin was inspired by [AGhost-7/critiq.vim][] and [codegram/vim-codereview
 
 The reason for creating my own is to match my workflow and be able to add features on the fly as needed.  If you are looking for a more general purpose tool I recomment trying [AGhost-7/critiq.vim][]
 
+Setup
+-----
+
+Save your github access token as the only line in `~/.pullreview`.
+
 Usage
 -----
 
