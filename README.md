@@ -17,15 +17,43 @@ Usage
 
 In a git project, run `:PullReviewList`
 
-This will list all open pull requests for your project.  With your cursor over the line that contains the pull request number, press `<CR>` to open the diff.
+In the PullRequest (diff) view lines that have comments will have a symbol in the line gutter.
 
-In the diff view lines that have comments will have a symbol in the line gutter.  To view the comment thread for that line, put your cursor on the line and press `<CR>`.
+Mappings
+--------
 
-To cycle lines with comments, use `<C-p>` and `<C-n>`.
+### PullReviewList
 
-To open the file for the line under the cursor, press `o`.  Note that this is going to show you your local version of the file (it will only show you the file from the pull request if you have checked out that branch).
+| Map | Action |
+|-----|--------|
+| `q` | `:bd` |
+| `<CR>` | Open the *PullRequest* in a new tab |
 
-Comments can be added in the diff view by pressing `c`.  A split will open and be in insert mode.  Type your comment there and when you are ready to post the comment leave insert mode and press `<CR>`.
+### PullRequest
+
+| Map | Action |
+|-----|--------|
+| `q` | `:bd` |
+| `<CR>` | Open the *CommentChain* for the current line |
+| `c` | Open a split to write a *NewComment* for the current line |
+| `o` | Open the file for the current line<sup>1</sup> |
+| `<C-p>` | Go to previous line with a comment |
+| `<C-n>` | Go to next line with a comment |
+
+### CommentChain
+
+| Map | Action |
+|-----|--------|
+| `q` | `:bd` |
+
+### NewComment
+
+| Map | Action |
+|-----|--------|
+| `<CR>` | Post comment |
+
+
+<sup>1</sup> This is going to show you your local version of the file.
 
 [AGhost-7/critiq.vim]: https://github.com/AGhost-7/critiq.vim
 [codegram/vim-codereview]: https://github.com/codegram/vim-codereview
