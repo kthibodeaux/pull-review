@@ -1,5 +1,5 @@
 module PullReview
-  class GotoCommentLine
+  class GoToCommentLine
     def initialize(current_line_number)
       @current_line_number = current_line_number
     end
