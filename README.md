@@ -23,6 +23,8 @@ In the diff view lines that have comments will have a symbol in the line gutter.
 
 To cycle lines with comments, use `<C-p>` and `<C-n>`.
 
+To open the file for the line under the cursor, press `o`.  Note that this is going to show you your local version of the file (it will only show you the file from the pull request if you have checked out that branch).
+
 Comments can be added in the diff view by pressing `c`.  A split will open and be in insert mode.  Type your comment there and when you are ready to post the comment leave insert mode and press `<CR>`.
 
 [AGhost-7/critiq.vim]: https://github.com/AGhost-7/critiq.vim
