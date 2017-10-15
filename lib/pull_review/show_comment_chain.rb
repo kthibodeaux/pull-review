@@ -38,7 +38,7 @@ module PullReview
     end
 
     def create_maps
-      Vim.command 'nnoremap <buffer> q :bd<CR>'
+      Vim.command 'nnoremap <buffer> <silent> q :bd<CR>'
     end
   end
 end
