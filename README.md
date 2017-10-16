@@ -27,6 +27,7 @@ Mappings
 | Map | Action |
 |-----|--------|
 | `q` | `:bd` |
+| `r` | Close and reopen the *PullRequestList* |
 | `<CR>` | Open the *PullRequest* in a new tab |
 
 ### PullRequest

@@ -22,6 +22,7 @@ module PullReview
 
     def create_maps
       Vim.command 'nnoremap <buffer> <silent> <CR> :call pullreview#show_pull_request()<CR>'
+      Vim.command 'nnoremap <buffer> <silent> r :bd!<CR>:call pullreview#show_pull_request_list()<CR>'
       Vim.command 'nnoremap <buffer> <silent> q :bd<CR>'
     end
 
