@@ -7,6 +7,7 @@ module PullReview
     end
 
     def call
+      Vim.command 'tab new'
       modify do
         pull_requests.each do |pr|
           buffer_print_line("#{ pr.fetch('number') }: #{ pr.fetch('title') }")
