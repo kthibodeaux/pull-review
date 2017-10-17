@@ -26,7 +26,6 @@ Mappings
 
 | Map | Action |
 |-----|--------|
-| `q` | `:bd` |
 | `r` | Close and reopen the *PullRequestList* |
 | `<CR>` | Open the *PullRequest* in a new tab |
 
@@ -34,18 +33,11 @@ Mappings
 
 | Map | Action |
 |-----|--------|
-| `q` | `:bd` |
 | `<CR>` | Open the *CommentChain* for the current line |
 | `c` | Open a split to write a *NewComment* for the current line |
 | `o` | Open the file for the current line<sup>1</sup> |
 | `<C-p>` | Go to previous line with a comment |
 | `<C-n>` | Go to next line with a comment |
-
-### CommentChain
-
-| Map | Action |
-|-----|--------|
-| `q` | `:bd` |
 
 ### NewComment
 

@@ -39,7 +39,6 @@ module PullReview
       Vim.command 'nnoremap <buffer> <silent> <C-p> :call pullreview#go_to_previous_commented_line()<CR>'
       Vim.command 'nnoremap <buffer> <silent> <C-n> :call pullreview#go_to_next_commented_line()<CR>'
       Vim.command 'nnoremap <buffer> <silent> o :call pullreview#go_to_file()<CR>'
-      Vim.command 'nnoremap <buffer> <silent> q :bd<CR>'
     end
   end
 end

@@ -13,7 +13,6 @@ module PullReview
         Vim.command 'set wrap'
         Vim.command 'set linebreak'
         write_comments_to_buffer
-        create_maps
       else
         Vim.command "echo 'No comment chain present for this line'"
       end
@@ -44,10 +43,6 @@ module PullReview
 
     def diff_map_location
       DiffMap.loaded[diff_line_number]
-    end
-
-    def create_maps
-      Vim.command 'nnoremap <buffer> <silent> q :bd<CR>'
     end
   end
 end
