@@ -41,6 +41,8 @@ module PullReview
       @buffer ||= begin
                     Vim.command 'split'
                     Vim.command 'enew'
+                    Vim.command 'setlocal wrap'
+                    Vim.command 'setlocal linebreak'
                     Vim.command 'setlocal ma'
                     Vim.command 'setl buftype=nofile'
                     Vim.command 'set ft=markdown'
