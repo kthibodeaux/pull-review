@@ -41,7 +41,7 @@ module PullReview
       @buffer ||= begin
                     Vim.command 'split'
                     Vim.command 'enew'
-                    Vim.command 'set ma'
+                    Vim.command 'setlocal ma'
                     Vim.command 'setl buftype=nofile'
                     Vim.command 'set ft=markdown'
                     Vim::Buffer.current

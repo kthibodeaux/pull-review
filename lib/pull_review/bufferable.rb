@@ -7,7 +7,7 @@ module PullReview
                     Vim.command 'enew'
                     Vim.command 'setl buftype=nofile'
                     set_buffer_filetype
-                    Vim.command 'set noma'
+                    Vim.command 'setlocal noma'
                     Vim::Buffer.current
                   end
     end
@@ -15,9 +15,9 @@ module PullReview
     def modify(&block)
       preload_buffer
 
-      Vim.command 'set ma'
+      Vim.command 'setlocal ma'
       yield
-      Vim.command 'set noma'
+      Vim.command 'setlocal noma'
     end
 
     def set_buffer_filetype
