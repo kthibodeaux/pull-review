@@ -4,6 +4,7 @@ endif
 let g:loaded_pullreview = 1
 
 sign define pullreviewcomment text=↪ texthl=Search
+sign define pullreviewcommentgreen text=↪ texthl=DiffAdd
 
 if has('ruby')
   ruby $: << File.expand_path(File.join(Vim.evaluate('g:PULLREVIEW_INSTALL_PATH'), '..', 'lib'))

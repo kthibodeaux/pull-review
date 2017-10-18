@@ -15,7 +15,7 @@ module PullReview
     attr_reader :args_dict
 
     def post_comment
-      @post_comment ||= Request::PostComment.new(number: number, comment: comment).response
+      @post_comment ||= Request::PostComment.new(number: number, comment: comment).result
     end
 
     def add_comment_to_loaded

@@ -2,7 +2,8 @@ module PullReview
   class CommentPositions
     def self.mark_lines(buffer_number)
       self.lines_with_comments.each do |line_number|
-        Vim.command "sign place #{ line_number } line=#{ line_number } name=pullreviewcomment buffer=#{ buffer_number }"
+        sign_name = CommentChain.sign_name_for(line_number)
+        Vim.command "sign place #{ line_number } line=#{ line_number } name=#{ sign_name } buffer=#{ buffer_number }"
       end
     end
 
