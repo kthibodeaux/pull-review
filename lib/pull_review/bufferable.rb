@@ -5,7 +5,7 @@ module PullReview
     def buffer
       @buffer ||= begin
                     Vim.command 'enew'
-                    Vim.command 'setl buftype=nofile'
+                    Vim.command 'setlocal buftype=nofile'
                     set_buffer_filetype
                     Vim.command 'setlocal noma'
                     Vim::Buffer.current
@@ -22,7 +22,7 @@ module PullReview
 
     def set_buffer_filetype
       return unless self.class.const_defined?('BUFFER_TYPE')
-      Vim.command "set filetype=#{ self.class::BUFFER_TYPE }"
+      Vim.command "setlocal filetype=#{ self.class::BUFFER_TYPE }"
     end
 
     def buffer_print_line(string = '')

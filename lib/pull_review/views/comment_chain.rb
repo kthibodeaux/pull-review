@@ -10,8 +10,8 @@ module PullReview
       if has_comments?
         Vim.command 'vsplit'
         Vim.command 'enew'
-        Vim.command 'set wrap'
-        Vim.command 'set linebreak'
+        Vim.command 'setlocal wrap'
+        Vim.command 'setlocal linebreak'
         write_comments_to_buffer
       else
         Vim.command "echo 'No comment chain present for this line'"

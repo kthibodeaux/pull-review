@@ -44,8 +44,8 @@ module PullReview
                     Vim.command 'setlocal wrap'
                     Vim.command 'setlocal linebreak'
                     Vim.command 'setlocal ma'
-                    Vim.command 'setl buftype=nofile'
-                    Vim.command 'set ft=markdown'
+                    Vim.command 'setlocal buftype=nofile'
+                    Vim.command 'setlocal filetype=markdown'
                     Vim::Buffer.current
                   end
     end
