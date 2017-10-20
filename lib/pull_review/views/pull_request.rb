@@ -11,6 +11,7 @@ module PullReview
       Vim.command 'tab new'
       write_diff_content_to_buffer
       mark_lines_that_have_comments
+      set_buffer_filetype
       create_maps
     end
 
