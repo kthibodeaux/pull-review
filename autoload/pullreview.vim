@@ -47,6 +47,7 @@ if has('ruby')
     ruby PullReview::Diff.load(Vim.evaluate("l:line"))
     ruby PullReview::DiffMap.load_from_loaded_diff()
     ruby PullReview::PullRequest.load(Vim.evaluate("l:line"))
+    ruby PullReview::CurrentLabels.load()
     ruby PullReview::View::PullRequest.new(Vim.evaluate("l:line")).call()
   endfunction
 
@@ -56,5 +57,10 @@ if has('ruby')
 
   function pullreview#show_labels()
     ruby PullReview::View::Labels.new.call
+  endfunction
+
+  function pullreview#toggle_label()
+    let l:label = getline(".")
+    ruby PullReview::CurrentLabels.toggle(Vim.evaluate("l:label"))
   endfunction
 endif
