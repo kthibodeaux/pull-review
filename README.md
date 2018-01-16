@@ -37,9 +37,14 @@ All mappings are in normal mode.
 |-----|--------|
 | `<CR>` | Open the *CommentChain* for the current line |
 | `c` | Open a split to write a *NewComment* for the current line |
+| `L` | Open a split to modify *Labels* |
 | `o` | Open the file for the current line<sup>2</sup> |
 | `<C-p>` | Go to previous line with a comment |
 | `<C-n>` | Go to next line with a comment |
+
+### Labels
+| Map | Action |
+| `<CR>` | Toggle the label on the current line |
 
 ### NewComment
 

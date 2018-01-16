@@ -6,6 +6,8 @@ let g:loaded_pullreview = 1
 sign define pullreviewcomment text=↪ texthl=Search
 sign define pullreviewcommentgreen text=↪ texthl=DiffAdd
 
+sign define pullreviewlabelactive text=↪ texthl=Search
+
 if has('ruby')
   ruby $: << File.expand_path(File.join(Vim.evaluate('g:PULLREVIEW_INSTALL_PATH'), '..', 'lib'))
   ruby require 'pull_review'
@@ -45,10 +47,20 @@ if has('ruby')
     ruby PullReview::Diff.load(Vim.evaluate("l:line"))
     ruby PullReview::DiffMap.load_from_loaded_diff()
     ruby PullReview::PullRequest.load(Vim.evaluate("l:line"))
+    ruby PullReview::CurrentLabels.load()
     ruby PullReview::View::PullRequest.new(Vim.evaluate("l:line")).call()
   endfunction
 
   function pullreview#show_pull_request_list()
     ruby PullReview::View::PullRequestList.call()
+  endfunction
+
+  function pullreview#show_labels()
+    ruby PullReview::View::Labels.new.call
+  endfunction
+
+  function pullreview#toggle_label()
+    let l:label = getline(".")
+    ruby PullReview::CurrentLabels.toggle(Vim.evaluate("l:label"))
   endfunction
 endif
