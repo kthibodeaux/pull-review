@@ -11,7 +11,7 @@ module PullReview
       modify do
         pull_requests.each do |pr|
           buffer_print_line("#{ pr.fetch('number') }: #{ pr.fetch('title') }")
-          buffer_print_line("#{ pr.fetch('user').fetch('login') } #{ format_labels(pr.fetch('labels')) }")
+          buffer_print_line("(#{ pr.fetch('comments') }) #{ pr.fetch('user').fetch('login') } #{ format_labels(pr.fetch('labels')) }")
           buffer_print_line
         end
       end
