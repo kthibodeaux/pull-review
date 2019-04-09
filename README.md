@@ -36,7 +36,8 @@ All mappings are in normal mode.
 | Map | Action |
 |-----|--------|
 | `<CR>` | Open the *CommentChain* for the current line |
-| `c` | Open a split to write a *NewComment* for the current line |
+| `c` | Open a split to write a *NewComment* for the current line.
+        Leave insert mode and press `<CR>` to submit the comment to Github. |
 | `L` | Open a split to modify *Labels* |
 | `o` | Open the file for the current line<sup>2</sup> |
 | `<C-p>` | Go to previous line with a comment |
